@@ -1,4 +1,29 @@
 <!DOCTYPE html><html lang="en"><head>
+        <script>
+// 🔑 Set your access key here
+const accessKey = "test123";
+
+// Check if access is already granted
+if (localStorage.getItem("access") !== "granted") {
+  
+  // Ask user for the key
+  const userKey = prompt("Enter Access Key:");
+
+  if (userKey === accessKey) {
+    // Correct key → allow access
+    localStorage.setItem("access", "granted");
+  } else {
+    // Wrong key → block page
+    document.body.innerHTML = `
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#111;color:#f00;">
+        <h1>❌ Access Denied</h1>
+        <p>Wrong key entered. You cannot view this page.</p>
+      </div>
+    `;
+    throw new Error("Access Denied: Wrong Key");
+  }
+}
+</script>
         <!-- Step 1: Include Adcash library as high as possible in head -->
         <script id="aclib" type="text/javascript" src="//acscan.com/script/aclib.js"></script>
         
