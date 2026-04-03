@@ -2,9 +2,11 @@
 <script>
 const correctKey = "chalfant";
 
-const userKey = prompt("Enter Access Key:");
+const userKey = prompt("enter key bum");
 
 if (userKey === correctKey) {
+
+  alert("welcome in");
 
   document.body.innerHTML = `
   <div style="
@@ -29,10 +31,6 @@ if (userKey === correctKey) {
     <h2>Loading...</h2>
   </div>
 
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f5b1b6c89.mp3" type="audio/mpeg">
-  </audio>
-
   <style>
     @keyframes spin {
       from {transform:rotate(0);}
@@ -42,6 +40,7 @@ if (userKey === correctKey) {
   `;
 
   setTimeout(() => {
+    alert("loading khanacademy.ink");
     location.reload();
   }, 3000);
 
