@@ -2,8 +2,6 @@
 <script>
 const correctKey = "chalfant";
 
-document.documentElement.style.display = "none";
-
 const userKey = prompt("Enter Access Key:");
 
 if (userKey === correctKey) {
@@ -44,7 +42,6 @@ if (userKey === correctKey) {
   `;
 
   setTimeout(() => {
-    document.documentElement.style.display = "block";
     location.reload();
   }, 3000);
 
