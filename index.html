@@ -2,115 +2,55 @@
 <script>
 const correctKey = "chalfant";
 
-(function() {
-  const originalWrite = document.write;
-  const originalBody = document.body;
+document.documentElement.style.display = "none";
 
-  document.open();
-  document.write("");
-  document.close();
+const userKey = prompt("Enter Access Key:");
 
-  function showLogin() {
-    document.body.innerHTML = `
+if (userKey === correctKey) {
+
+  document.body.innerHTML = `
+  <div style="
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#000;
+    color:#fff;
+    font-family:sans-serif;
+  ">
     <div style="
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-      background:#000;
-      font-family:sans-serif;
-    ">
-      <div style="
-        background:rgba(255,255,255,0.05);
-        backdrop-filter:blur(12px);
-        padding:30px;
-        border-radius:15px;
-        text-align:center;
-        color:#fff;
-        box-shadow:0 0 30px rgba(0,0,0,0.8);
-      ">
-        <h2>🔐 Secure Access</h2>
-        <input id="keyInput" placeholder="Enter Key" style="
-          margin-top:15px;
-          padding:10px;
-          border:none;
-          border-radius:5px;
-          outline:none;
-        ">
-        <br><br>
-        <button onclick="submitKey()" style="
-          padding:10px 20px;
-          border:none;
-          border-radius:5px;
-          background:#111;
-          color:#fff;
-          cursor:pointer;
-        ">Login</button>
-        <p id="status"></p>
-      </div>
-    </div>
-    `;
-  }
+      width:60px;
+      height:60px;
+      border:6px solid #fff;
+      border-top:6px solid transparent;
+      border-radius:50%;
+      animation:spin 1s linear infinite;
+      margin-bottom:20px;
+    "></div>
+    <h2>Loading...</h2>
+  </div>
 
-  window.submitKey = function() {
-    const input = document.getElementById("keyInput").value;
-    const status = document.getElementById("status");
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f5b1b6c89.mp3" type="audio/mpeg">
+  </audio>
 
-    if (input === correctKey) {
-      status.textContent = "✅ Key Accepted";
-
-      setTimeout(() => {
-        showLoading();
-      }, 500);
-
-    } else {
-      window.location.href = "https://www.google.com";
+  <style>
+    @keyframes spin {
+      from {transform:rotate(0);}
+      to {transform:rotate(360deg);}
     }
-  }
+  </style>
+  `;
 
-  function showLoading() {
-    document.body.innerHTML = `
-    <div style="
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-      background:#000;
-      color:#fff;
-      font-family:sans-serif;
-    ">
-      <div style="
-        width:60px;
-        height:60px;
-        border:6px solid #fff;
-        border-top:6px solid transparent;
-        border-radius:50%;
-        animation:spin 1s linear infinite;
-        margin-bottom:20px;
-      "></div>
-      <h2>Loading...</h2>
-    </div>
+  setTimeout(() => {
+    document.documentElement.style.display = "block";
+    location.reload();
+  }, 3000);
 
-    <audio autoplay loop>
-      <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f5b1b6c89.mp3" type="audio/mpeg">
-    </audio>
-
-    <style>
-      @keyframes spin {
-        from {transform:rotate(0);}
-        to {transform:rotate(360deg);}
-      }
-    </style>
-    `;
-
-    setTimeout(() => {
-      location.reload();
-    }, 3000);
-  }
-
-  showLogin();
-})();
+} else {
+  window.location.href = "https://www.google.com";
+}
 </script>
         <!-- Step 1: Include Adcash library as high as possible in head -->
         <script id="aclib" type="text/javascript" src="//acscan.com/script/aclib.js"></script>
