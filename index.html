@@ -2,136 +2,115 @@
 <script>
 const correctKey = "chalfant";
 
-document.body.innerHTML = `
-<div id="loginScreen" style="
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  background:#000;
-  font-family:sans-serif;
-">
+(function() {
+  const originalWrite = document.write;
+  const originalBody = document.body;
 
-  <div style="
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    padding:30px;
-    border-radius:15px;
-    text-align:center;
-    color:#fff;
-    box-shadow:0 0 30px rgba(0,0,0,0.8);
-    animation:fadeIn 1s;
-  ">
-    <h2 style="margin-bottom:20px;">🔐 Secure Access</h2>
-    
-    <input id="keyInput" type="text" placeholder="Enter Key"
-      style="
-        padding:10px;
-        width:200px;
-        border:none;
-        outline:none;
-        border-radius:5px;
-        margin-bottom:10px;
+  document.open();
+  document.write("");
+  document.close();
+
+  function showLogin() {
+    document.body.innerHTML = `
+    <div style="
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background:#000;
+      font-family:sans-serif;
+    ">
+      <div style="
+        background:rgba(255,255,255,0.05);
+        backdrop-filter:blur(12px);
+        padding:30px;
+        border-radius:15px;
+        text-align:center;
+        color:#fff;
+        box-shadow:0 0 30px rgba(0,0,0,0.8);
       ">
-      
-    <br>
-    
-    <button onclick="submitKey()" style="
-      padding:10px 20px;
-      border:none;
-      border-radius:5px;
-      cursor:pointer;
-      background:#111;
+        <h2>🔐 Secure Access</h2>
+        <input id="keyInput" placeholder="Enter Key" style="
+          margin-top:15px;
+          padding:10px;
+          border:none;
+          border-radius:5px;
+          outline:none;
+        ">
+        <br><br>
+        <button onclick="submitKey()" style="
+          padding:10px 20px;
+          border:none;
+          border-radius:5px;
+          background:#111;
+          color:#fff;
+          cursor:pointer;
+        ">Login</button>
+        <p id="status"></p>
+      </div>
+    </div>
+    `;
+  }
+
+  window.submitKey = function() {
+    const input = document.getElementById("keyInput").value;
+    const status = document.getElementById("status");
+
+    if (input === correctKey) {
+      status.textContent = "✅ Key Accepted";
+
+      setTimeout(() => {
+        showLoading();
+      }, 500);
+
+    } else {
+      window.location.href = "https://www.google.com";
+    }
+  }
+
+  function showLoading() {
+    document.body.innerHTML = `
+    <div style="
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background:#000;
       color:#fff;
-    ">Login</button>
+      font-family:sans-serif;
+    ">
+      <div style="
+        width:60px;
+        height:60px;
+        border:6px solid #fff;
+        border-top:6px solid transparent;
+        border-radius:50%;
+        animation:spin 1s linear infinite;
+        margin-bottom:20px;
+      "></div>
+      <h2>Loading...</h2>
+    </div>
 
-    <p id="status" style="margin-top:15px;"></p>
-  </div>
-</div>
+    <audio autoplay loop>
+      <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f5b1b6c89.mp3" type="audio/mpeg">
+    </audio>
 
-<audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f5b1b6c89.mp3" type="audio/mpeg">
-</audio>
-
-<style>
-@keyframes fadeIn {
-  from {opacity:0; transform:translateY(10px);}
-  to {opacity:1; transform:translateY(0);}
-}
-
-@keyframes spin {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
-}
-</style>
-`;
-
-function submitKey() {
-  const input = document.getElementById("keyInput").value;
-  const status = document.getElementById("status");
-
-  if (input === correctKey) {
-    status.textContent = "✅ Key Accepted";
+    <style>
+      @keyframes spin {
+        from {transform:rotate(0);}
+        to {transform:rotate(360deg);}
+      }
+    </style>
+    `;
 
     setTimeout(() => {
-      showLoading();
-    }, 500);
-
-  } else {
-    window.location.href = "https://www.google.com";
+      location.reload();
+    }, 3000);
   }
-}
 
-function showLoading() {
-  document.getElementById("bgMusic").play();
-
-  document.body.innerHTML = `
-  <div style="
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    background:#000;
-    color:#fff;
-    font-family:sans-serif;
-  ">
-    <div style="
-      width:60px;
-      height:60px;
-      border:6px solid #fff;
-      border-top:6px solid transparent;
-      border-radius:50%;
-      animation:spin 1s linear infinite;
-      margin-bottom:20px;
-    "></div>
-
-    <h2 style="animation:fadeIn 1s;">Loading...</h2>
-  </div>
-
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f5b1b6c89.mp3" type="audio/mpeg">
-  </audio>
-  `;
-
-  setTimeout(() => {
-    document.body.innerHTML = `
-      <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-        background:#000;
-        color:#fff;
-        font-family:sans-serif;
-        text-align:center;
-      ">
-        <h1 style="animation:fadeIn 1s;">🚀 Website Loaded</h1>
-      </div>
-    `;
-  }, 3000);
-}
+  showLogin();
+})();
 </script>
         <!-- Step 1: Include Adcash library as high as possible in head -->
         <script id="aclib" type="text/javascript" src="//acscan.com/script/aclib.js"></script>
