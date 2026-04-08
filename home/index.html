@@ -1,51 +1,12 @@
 <!DOCTYPE html><html lang="en"><head>
 <script>
-const correctKey = "chalfant";
+// 🔒 Access control: must come from main site AND have key
+const allowed = "khan2.onrender.com";
 
-const userKey = prompt("enter key bum");
-
-if (userKey === correctKey) {
-
-  alert("welcome in");
-
-  document.body.innerHTML = `
-  <div style="
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    background:#000;
-    color:#fff;
-    font-family:sans-serif;
-  ">
-    <div style="
-      width:60px;
-      height:60px;
-      border:6px solid #fff;
-      border-top:6px solid transparent;
-      border-radius:50%;
-      animation:spin 1s linear infinite;
-      margin-bottom:20px;
-    "></div>
-    <h2>Loading...</h2>
-  </div>
-
-  <style>
-    @keyframes spin {
-      from {transform:rotate(0);}
-      to {transform:rotate(360deg);}
-    }
-  </style>
-  `;
-
-  setTimeout(() => {
-    alert("loading khanacademy.ink");
-    location.reload();
-  }, 3000);
-
-} else {
-  window.location.href = "https://www.google.com";
+// If referrer missing or localStorage access not granted → redirect
+if (!document.referrer.includes(allowed) || localStorage.getItem("access") !== "granted") {
+  window.location.href = "https://www.deltamath.com";
+  throw new Error("Blocked access");
 }
 </script>
         <!-- Step 1: Include Adcash library as high as possible in head -->
