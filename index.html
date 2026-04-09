@@ -1,51 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Key Here</title>
+  <title>Khan Homework</title>
   <style>
-    body { background: #0f0f0f; color: white; font-family: Arial; text-align:center; }
-    .center { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); }
-    .hidden { display:none; }
-    .loader { border:6px solid #333; border-top:6px solid white; border-radius:50%; width:50px; height:50px; animation:spin 1s linear infinite; margin:auto; }
-    @keyframes spin { 100% { transform:rotate(360deg); } }
-    input, button { padding:10px; margin-top:10px; font-size:16px; }
+    body {
+      margin: 0;
+      font-family: Arial;
+      color: white;
+      overflow: hidden;
+      background: linear-gradient(270deg, #0f0f0f, #1a1a1a, #000000);
+      background-size: 600% 600%;
+      animation: bgMove 10s ease infinite;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .hidden { display: none; }
+
+    /* 🔥 Flashing title */
+    .flash {
+      animation: flash 1s infinite alternate;
+    }
+
+    @keyframes flash {
+      from { opacity: 0.6; }
+      to { opacity: 1; }
+    }
+
+    /* 📊 Progress bar */
+    .bar-container {
+      width: 300px;
+      height: 20px;
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, white, gray);
+      transition: width 0.2s;
+    }
+
+    /* 🔑 Hidden key input */
+    input {
+      padding: 10px;
+      margin-top: 15px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+      background: #222;
+      color: white;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+      background: white;
+      border: none;
+    }
+
   </style>
 </head>
 <body>
 
-<!-- Loading Screen -->
+<!-- 🔄 LOADING SCREEN -->
 <div id="loading" class="center">
-  <h1>Loading...</h1>
-  <div class="loader"></div>
+  <h1 class="flash">Initializing...</h1>
+  <div class="bar-container">
+    <div id="bar" class="bar"></div>
+  </div>
+  <p id="percent">0%</p>
 </div>
 
-<!-- Key Screen -->
+<!-- 🔑 KEY SCREEN -->
 <div id="key" class="center hidden">
-  <h1>Enter Key Bum</h1>
-  <input id="k" placeholder="Enter key...">
+  <h1 class="flash">Enter Access Key</h1>
+  <input id="k" type="password" placeholder="••••••••••">
   <br>
-  <button onclick="checkKey()">Submit</button>
+  <button onclick="checkKey()">Unlock</button>
 </div>
 
 <script>
-  // Show key screen after 3 seconds
-  setTimeout(() => {
-    loading.classList.add("hidden");
-    key.classList.remove("hidden");
-  }, 3000);
+let progress = 0;
+const bar = document.getElementById("bar");
+const percent = document.getElementById("percent");
 
-  function checkKey() {
-    const correctKey = "k@ss";  // <-- Change to your desired key
+// Fake loading progress
+const interval = setInterval(() => {
+  progress += Math.random() * 10;
+  if (progress >= 100) {
+    progress = 100;
+    clearInterval(interval);
 
-    if (k.value === correctKey) {
-      alert("Welcome in!");
-      localStorage.setItem("access","granted");
-      window.location.href = "/home";
-    } else {
-      // ❌ Wrong key → redirect to Delta Math
-      window.location.href = "https://www.deltamath.com";
-    }
+    // Switch to key screen
+    document.getElementById("loading").classList.add("hidden");
+    document.getElementById("key").classList.remove("hidden");
   }
+
+  bar.style.width = progress + "%";
+  percent.innerText = Math.floor(progress) + "%";
+
+}, 200);
+
+// 🔑 Key check
+function checkKey() {
+  const correctKey = "JOB"; // change this
+
+  if (k.value === correctKey) {
+    localStorage.setItem("access","granted");
+    window.location.href = "/home";
+  } else {
+    // ❌ Wrong key → redirect
+    window.location.href = "https://www.deltamath.com";
+  }
+}
 </script>
 
 </body>
