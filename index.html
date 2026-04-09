@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Khan Homework</title>
+  <title>KHAN HOMEWORK</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial;
+      background: black;
       color: white;
+      font-family: Arial;
       overflow: hidden;
-      background: linear-gradient(270deg, #0f0f0f, #1a1a1a, #000000);
-      background-size: 600% 600%;
-      animation: bgMove 10s ease infinite;
     }
 
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* ⭐ Stars background */
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      animation: float 10s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); opacity: 1; }
+      to { transform: translateY(-10vh); opacity: 0; }
     }
 
     .center {
@@ -29,87 +44,105 @@
 
     .hidden { display: none; }
 
-    /* 🔥 Flashing title */
+    /* ⚡ Flash text */
     .flash {
       animation: flash 1s infinite alternate;
     }
 
     @keyframes flash {
-      from { opacity: 0.6; }
+      from { opacity: 0.5; }
       to { opacity: 1; }
     }
 
-    /* 📊 Progress bar */
+    /* 📊 Loading bar */
     .bar-container {
       width: 300px;
       height: 20px;
-      background: #222;
-      border-radius: 10px;
-      overflow: hidden;
+      background: white;
       margin-top: 20px;
     }
 
     .bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, white, gray);
+      background: black;
       transition: width 0.2s;
     }
 
-    /* 🔑 Hidden key input */
     input {
       padding: 10px;
       margin-top: 15px;
-      font-size: 16px;
-      border: none;
-      outline: none;
-      background: #222;
+      background: black;
       color: white;
+      border: 1px solid white;
       text-align: center;
     }
 
     button {
       padding: 10px 20px;
       margin-top: 10px;
-      cursor: pointer;
       background: white;
+      color: black;
       border: none;
+      cursor: pointer;
     }
 
+    .fake {
+      margin-top: 15px;
+      font-size: 14px;
+      color: gray;
+      cursor: pointer;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
-<!-- 🔄 LOADING SCREEN -->
+<div class="stars" id="stars"></div>
+
+<!-- 🔄 LOADING -->
 <div id="loading" class="center">
-  <h1 class="flash">Initializing...</h1>
+  <h1 class="flash">KHAN HOMEWORK</h1>
   <div class="bar-container">
     <div id="bar" class="bar"></div>
   </div>
   <p id="percent">0%</p>
 </div>
 
-<!-- 🔑 KEY SCREEN -->
+<!-- 🔑 KEY -->
 <div id="key" class="center hidden">
-  <h1 class="flash">Enter Access Key</h1>
-  <input id="k" type="password" placeholder="••••••••••">
+  <h1 class="flash">Enter Key</h1>
+  <input id="k" type="password" placeholder="••••••••">
   <br>
   <button onclick="checkKey()">Unlock</button>
+
+  <!-- 🎭 Fake key -->
+  <div class="fake" onclick="fakeKey()">FREE KEY</div>
 </div>
 
 <script>
+/* ⭐ Generate stars */
+for (let i = 0; i < 100; i++) {
+  let star = document.createElement("div");
+  star.className = "star";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.animationDuration = (5 + Math.random() * 10) + "s";
+  star.style.opacity = Math.random();
+  document.getElementById("stars").appendChild(star);
+}
+
+/* 📊 Loading bar */
 let progress = 0;
 const bar = document.getElementById("bar");
 const percent = document.getElementById("percent");
 
-// Fake loading progress
 const interval = setInterval(() => {
-  progress += Math.random() * 10;
+  progress += Math.random() * 8;
+
   if (progress >= 100) {
     progress = 100;
     clearInterval(interval);
 
-    // Switch to key screen
     document.getElementById("loading").classList.add("hidden");
     document.getElementById("key").classList.remove("hidden");
   }
@@ -119,15 +152,22 @@ const interval = setInterval(() => {
 
 }, 200);
 
-// 🔑 Key check
+/* 🔑 Real key */
 function checkKey() {
-  const correctKey = "JOB"; // change this
-
-  if (k.value === correctKey) {
+  if (k.value === "deltakhan") {
     localStorage.setItem("access","granted");
     window.location.href = "/home";
   } else {
-    // ❌ Wrong key → redirect
+    window.location.href = "https://www.deltamath.com";
+  }
+}
+
+/* 🎭 Fake key button */
+function fakeKey() {
+  // Random redirect for trolling
+  if (Math.random() > 0.5) {
+    window.location.href = "https://www.khanacademy.org";
+  } else {
     window.location.href = "https://www.deltamath.com";
   }
 }
