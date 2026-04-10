@@ -154,23 +154,31 @@ const interval = setInterval(() => {
 
 /* 🔑 Real key */
 function checkKey() {
-  if (k.value === "deltakhan") {
+  const input = k.value;
+
+  if (input === "deltakhan") {
     localStorage.setItem("access","granted");
     window.location.href = "/home";
+
+  } else if (input === "derekkey") { // 🔑 second key
+    localStorage.setItem("access","granted");
+    window.location.href = "/derek";
+
   } else {
+    // ❌ wrong key
     window.location.href = "https://www.deltamath.com";
   }
 }
 
-/* 🎭 Fake key button */
+// 🎭 Fake key button (troll)
 function fakeKey() {
-  // Random redirect for trolling
   if (Math.random() > 0.5) {
     window.location.href = "https://www.khanacademy.org";
   } else {
     window.location.href = "https://www.deltamath.com";
   }
 }
+
 </script>
 
 </body>
