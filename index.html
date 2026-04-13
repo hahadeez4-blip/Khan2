@@ -160,9 +160,13 @@ function checkKey() {
     localStorage.setItem("access","granted");
     window.location.href = "/home";
 
-  } else if (input === "derekkey") { // 🔑 second key
+  
+
+    } else if (input === "shadow") { // 🔑 second key
     localStorage.setItem("access","granted");
-    window.location.href = "/derek";
+    window.location.href = "/shadow";
+
+    
 
   } else {
     // ❌ wrong key
