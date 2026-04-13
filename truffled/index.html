@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DeltaMath</title>
+</head>
+<body style="background:black; color:white; text-align:center; font-family:sans-serif;">
+    <h1>Open Delta Homework</h1>
+    <button onclick="openSite()">Study</button>
+
+    <script>
+        function openSite() {
+            // Open a blank tab
+            let newTab = window.open("about:blank", "_blank");
+
+            // Write a full page into it
+            newTab.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Homework For Today</title>
+                    <style>
+                        body {
+                            margin: 0;
+                            background: black;
+                            overflow: hidden;
+                        }
+                        iframe {
+                            border: none;
+                            width: 100vw;
+                            height: 100vh;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <iframe src="https://wign9bf2q3902-q3hrf9qba8f-9312awiydvawudauwhnbguy12febvf71239vf.thepresenttraveller.com/"></iframe>
+                </body>
+                </html>
+            `);
+
+            newTab.document.close();
+        }
+    </script>
+</body>
+</html>
