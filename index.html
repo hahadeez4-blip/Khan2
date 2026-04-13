@@ -160,19 +160,19 @@ function checkKey() {
     localStorage.setItem("access","granted");
     window.location.href = "/home";
 
-  
+  } else if (input === "derekkey") {
+    localStorage.setItem("access","granted");
+    window.location.href = "/derek";
 
-    } else if (input === "shadow") { // 🔑 second key
+  } else if (input === "shadow") { // 🌑 NEW KEY
     localStorage.setItem("access","granted");
     window.location.href = "/shadow";
 
-    
-
   } else {
-    // ❌ wrong key
     window.location.href = "https://www.deltamath.com";
   }
 }
+
 
 // 🎭 Fake key button (troll)
 function fakeKey() {
