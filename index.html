@@ -168,14 +168,19 @@ function checkKey() {
     localStorage.setItem("access","granted");
     window.location.href = "/shadow";
 
-  } else if (input === "axis") { // ⚙️ NEW KEY
+  } else if (input === "axis") {
     localStorage.setItem("access","granted");
     window.location.href = "/axis";
+
+  } else if (input === "truffled") { // 🍫 NEW KEY
+    localStorage.setItem("access","granted");
+    window.location.href = "/truffled";
 
   } else {
     window.location.href = "https://www.deltamath.com";
   }
 }
+
 
 
 // 🎭 Fake key button (troll)
