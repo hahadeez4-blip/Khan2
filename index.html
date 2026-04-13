@@ -164,9 +164,13 @@ function checkKey() {
     localStorage.setItem("access","granted");
     window.location.href = "/derek";
 
-  } else if (input === "shadow") { // 🌑 NEW KEY
+  } else if (input === "shadow") {
     localStorage.setItem("access","granted");
     window.location.href = "/shadow";
+
+  } else if (input === "axis") { // ⚙️ NEW KEY
+    localStorage.setItem("access","granted");
+    window.location.href = "/axis";
 
   } else {
     window.location.href = "https://www.deltamath.com";
