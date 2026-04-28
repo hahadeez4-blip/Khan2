@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<script>
+const ref = document.referrer || "";
+
+// Allow only if user came from SOME page on your site
+// (works on Vercel / Netlify / Render automatically)
+const isSameSite =
+  ref.length > 0 &&
+  new URL(ref).origin === window.location.origin;
+
+// Access gate
+if (!isSameSite || localStorage.getItem("access") !== "granted") {
+  window.location.href = "https://www.deltamath.com";
+  throw new Error("Blocked");
+}
+</script>
+
+<html>
+<head>
+    <title>DeltaMath</title>
+</head>
+<body style="background:black; color:white; text-align:center; font-family:sans-serif;">
+    <h1>Open Delta Homework</h1>
+    <button onclick="openSite()">Study</button>
+
+    <script>
+        function openSite() {
+            // Open a blank tab
+            let newTab = window.open("about:blank", "_blank");
+
+            // Write a full page into it
+            newTab.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Homework For Today</title>
+                    <style>
+                        body {
+                            margin: 0;
+                            background: black;
+                            overflow: hidden;
+                        }
+                        iframe {
+                            border: none;
+                            width: 100vw;
+                            height: 100vh;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <iframe src="https://helptired8.notinthearchives.net/"></iframe>
+                </body>
+                </html>
+            `);
+
+            newTab.document.close();
+        }
+    </script>
+</body>
+</html>
