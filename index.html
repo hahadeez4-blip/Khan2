@@ -154,32 +154,50 @@ const interval = setInterval(() => {
 
 /* 🔑 Real key */
 function checkKey() {
+
   const input = k.value;
 
-  if (input === "goodluck") {
+  if (input === "deltakhan") {
+
     localStorage.setItem("access","granted");
+
     window.location.href = "/home";
 
-  } else if (input === "dinoderek") {
+  } else if (input === "derekkey") {
+
     localStorage.setItem("access","granted");
+
     window.location.href = "/derek";
 
-  } else if (input === "v3") {
+  } else if (input === "shadow") {
+
     localStorage.setItem("access","granted");
+
     window.location.href = "/shadow";
 
-  } else if (input === "XAxis") {
+  } else if (input === "axis") {
+
     localStorage.setItem("access","granted");
+
     window.location.href = "/axis";
 
-  } else if (input === "truffled") { // 🍫 NEW KEY
+  } else if (input === "truffled") {
+
     localStorage.setItem("access","granted");
+
     window.location.href = "/truffled";
 
+  } else if (input === "cherry") { // 🍒 NEW KEY
+
+    localStorage.setItem("access","granted");
+
+    window.location.href = "/cherry";
+
   } else {
+
     window.location.href = "https://www.deltamath.com";
+
   }
-}
 
 
 
