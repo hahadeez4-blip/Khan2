@@ -155,42 +155,36 @@ const interval = setInterval(() => {
 /* 🔑 Real key */
 function checkKey() {
 
-  const input = k.value;
+  const input = document.getElementById("k").value;
 
   if (input === "deltakhan") {
 
     localStorage.setItem("access","granted");
-
     window.location.href = "/home";
 
   } else if (input === "derekkey") {
 
     localStorage.setItem("access","granted");
-
     window.location.href = "/derek";
 
   } else if (input === "shadow") {
 
     localStorage.setItem("access","granted");
-
     window.location.href = "/shadow";
 
   } else if (input === "axis") {
 
     localStorage.setItem("access","granted");
-
     window.location.href = "/axis";
 
   } else if (input === "truffled") {
 
     localStorage.setItem("access","granted");
-
     window.location.href = "/truffled";
 
-  } else if (input === "cherry") { // 🍒 NEW KEY
+  } else if (input === "cherry") {
 
     localStorage.setItem("access","granted");
-
     window.location.href = "/cherry";
 
   } else {
@@ -198,10 +192,9 @@ function checkKey() {
     window.location.href = "https://www.deltamath.com";
 
   }
+}
 
-
-
-// 🎭 Fake key button (troll)
+/* 🎭 Fake key button */
 function fakeKey() {
   if (Math.random() > 0.5) {
     window.location.href = "https://www.khanacademy.org";
@@ -209,7 +202,6 @@ function fakeKey() {
     window.location.href = "https://www.deltamath.com";
   }
 }
-
 </script>
 
 </body>
